@@ -1,0 +1,35 @@
+h2 {
+  color: #bc5eac;
+  text-align: center;
+}
+p {
+  text-align: center;
+  font-size: 1.2em;
+}
+
+.PixelartImage{
+
+  width: 256px;
+  height: 256px;
+  position: relative;
+  left: 80px;
+  top: 60px;
+}
+.pacifico-regular {
+  font-family: "Pacifico", cursive;
+  font-weight: 400;
+  font-size: 50px;
+  font-style: normal;
+}
+
+
+.honk-PixelText {
+  font-family: "Honk", system-ui;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-size: 40px;
+  font-style: normal;
+  font-variation-settings:
+    "MORF" 15,
+    "SHLN" 90.8;
+}

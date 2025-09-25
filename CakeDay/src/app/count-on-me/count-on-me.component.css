@@ -1,0 +1,233 @@
+:host {
+	display: block;
+}
+
+/* Emoji wallpaper layer behind content */
+.emoji-wallpaper {
+	position: absolute;
+	inset: 0; /* top/right/bottom/left: 0 */
+	pointer-events: none;
+	overflow: hidden;
+	z-index: 0;
+}
+.emoji-wallpaper .emoji {
+	position: absolute;
+	user-select: none;
+	transform: translate(-50%, -50%);
+}
+
+.count-root.blurred {
+	filter: blur(6px);
+}
+
+.overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	display: flex;
+	align-items: center;          /* vertical centering */
+	justify-content: flex-start; /* move popup to left */
+	padding-left: 5vw;          /* offset from left edge, adjust as needed */
+	background: rgba(0,0,0,0.9);
+	z-index: 1000;
+}
+
+.popup {
+	background: rgb(0, 0, 0);
+	border-radius: 8px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+	width: 50vw;
+	height: 50vh;
+	margin-left: 80px;
+}
+
+/* Centered GIF on the page */
+.center-gif {
+	position: absolute;
+	inset: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 1; /* above wallpaper but below popup overlay (1000) */
+	pointer-events: none;
+}
+.center-gif .mimineko {
+	max-width: 60vw;
+	max-height: 60vh;
+	pointer-events: auto; /* allow clicks if needed */
+}
+
+@media(min-width: 800px) {
+	.popup {
+		width: 20vw;
+		height: 20vh;
+	}
+}
+
+.enter-btn {
+	font-size: 1.4rem;
+	padding: 12px 24px;
+	cursor: pointer;
+}
+
+
+body {
+	background: #323641;
+}
+
+.letter-image {
+	position: relative;
+	width: 200px;
+	height: 200px;
+	margin: 0 auto;
+	cursor: pointer;
+}
+
+.animated-mail {
+	position: absolute;
+	height: 150px;
+	width: 200px;
+	-webkit-transition: .4s;
+	-moz-transition: .4s;
+	transition: .4s;
+	
+	.body {
+		position: absolute;
+		bottom: 0;
+		width: 0;
+		height: 0;
+		border-style: solid;
+		border-width: 0 0 100px 200px;
+		border-color: transparent transparent #e95f55 transparent;
+		z-index: 2;
+	}
+	
+	.top-fold {
+		position: absolute;
+		top: 50px;
+		width: 0;
+		height: 0;
+		border-style: solid;
+		border-width: 50px 100px 0 100px;
+		-webkit-transform-origin: 50% 0%;
+		-webkit-transition: transform .4s .4s, z-index .2s .4s;
+		-moz-transform-origin: 50% 0%;
+		-moz-transition: transform .4s .4s, z-index .2s .4s;
+		transform-origin: 50% 0%;
+		transition: transform .4s .4s, z-index .2s .4s;
+		border-color: #cf4a43 transparent transparent transparent;
+		z-index: 2;
+	}
+	
+	.back-fold {
+		position: absolute;
+		bottom: 0;
+		width: 200px;
+		height: 100px;
+		background: #cf4a43;
+		z-index: 0;
+	}
+	
+	.left-fold {
+		position: absolute;
+		bottom: 0;
+		width: 0;
+		height: 0;
+		border-style: solid;
+		border-width: 50px 0 50px 100px;
+		border-color: transparent transparent transparent #e15349;
+		z-index: 2;
+	}
+	
+	.letter {
+		left: 20px;
+		bottom: 0px;
+		position: absolute;
+		width: 160px;
+		height: 60px;
+		background: rgb(248, 248, 248);
+		z-index: 1;
+		overflow: hidden;
+		-webkit-transition: .4s .2s;
+		-moz-transition: .4s .2s;
+		transition: .4s .2s;
+		
+		.letter-border {
+			height: 10px;
+			width: 100%;
+      background: repeating-linear-gradient(
+        -45deg,
+        #cb5a5e,
+        #cb5a5e 8px,
+        transparent 8px,
+        transparent 18px
+      );
+		}
+		
+		.letter-title {
+			margin-top: 10px;
+			margin-left: 5px;
+			height: 10px;
+			width: 40%;
+			background: #cb5a5e;
+		}
+		.letter-context {
+			margin-top: 10px;
+			margin-left: 5px;
+			height: 10px;
+			width: 20%;
+			background: #cb5a5e;
+		}
+		
+		.letter-stamp {
+			margin-top: 30px;
+			margin-left: 120px;
+			border-radius: 100%;
+			height: 30px;
+			width: 30px;
+			background: #cb5a5e;
+			opacity: 0.3;
+		}
+	}
+}
+
+.shadow {
+	position: absolute;
+	top: 200px;
+	left: 50%;
+	width: 400px;
+	height: 30px;
+	transition: .4s;
+	transform: translateX(-50%);
+	-webkit-transition: .4s;
+	-webkit-transform: translateX(-50%);
+	-moz-transition: .4s;
+	-moz-transform: translateX(-50%);
+	
+	border-radius: 100%;
+	background: radial-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.0), rgba(0,0,0,0.0));
+}
+
+	/* animate when popup's letter-image has `open` class (applied by TS on click) */
+	.popup .letter-image.open .animated-mail {
+		transform: translateY(50px);
+	}
+
+	.popup .letter-image.open .animated-mail .top-fold {
+		transition: transform .4s, z-index .2s;
+		transform: rotateX(180deg);
+		z-index: 0;
+	}
+
+	.popup .letter-image.open .animated-mail .letter {
+		height: 180px;
+	}
+
+	.popup .letter-image.open .shadow {
+		width: 250px;
+	}

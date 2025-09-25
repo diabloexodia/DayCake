@@ -1,0 +1,31 @@
+<div class="count-root" [class.blurred]="popupVisible">
+	<!-- Emoji wallpaper container -->
+	<div id="emojiWallpaper" class="emoji-wallpaper" aria-hidden="true"></div>
+
+	<!-- Centered GIF -->
+	<div class="center-gif">
+		<img src="assets/miminekolove.gif" alt="miminekolove" class="mimineko">
+	</div>
+</div>
+
+<div class="overlay" *ngIf="popupVisible">
+	<div class="popup">
+		<div class="letter-image" (click)="onLetterClicked()" role="button" aria-label="Open Letter">
+			<div class="animated-mail">
+				<div class="back-fold"></div>
+				<div class="letter">
+					<div class="letter-border"></div>
+					<div class="letter-title"></div>
+					<div class="letter-context"></div>
+					<div class="letter-stamp">
+						<div class="letter-stamp-inner"></div>
+					</div>
+				</div>
+				<div class="top-fold"></div>
+				<div class="body"></div>
+				<div class="left-fold"></div>
+			</div>
+			<div class="shadow"></div>
+		</div>
+	</div>
+</div>

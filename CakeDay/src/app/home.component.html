@@ -1,0 +1,44 @@
+<!-- Google font import for the curved title -->
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
+<canvas id="world" class="confetti-canvas"></canvas>
+
+<div class="home-root" [class.blurred]="popupVisible">
+
+  <div class="title-curve" aria-hidden="true">
+    <svg viewBox="0 0 1000 320" preserveAspectRatio="xMidYMid meet" class="title-svg">
+      <path id="arcPath" d="M50,180 A450,150 0 0,1 950,180" fill="transparent"></path>
+      <text class="title-text">
+        <textPath href="#arcPath" startOffset="50%" text-anchor="middle">Happy Birthday</textPath>
+      </text>
+    </svg>
+  </div>
+
+  <img src="assets/kazookid.gif" class="kazookid" alt="kazookid animation">
+  <img src="assets/kazookid.gif" class="kazookid2" alt="kazookid animation">
+
+  <img src="assets/BirthdayCake.gif" class="cake" alt="cake animation">
+  <div class="gifts">
+    <ng-container *ngFor="let visible of gifts; let i = index">
+      <img *ngIf="visible" src="assets/Giftpremiumanimation.gif" class="gift" alt="Gift Animation"
+        (click)="onGiftClick(i)">
+    </ng-container>
+  </div>
+</div>
+
+<div class="overlay" *ngIf="popupVisible">
+  <div class="popup">
+    <div class="cookiesContent" id="cookiesPopup">
+      <img
+        [src]="giftPopupActive && popupMessage === 'No Gift' ? 'https://cdn-icons-png.flaticon.com/128/8013/8013714.png' : 'https://cdn-icons-png.flaticon.com/128/3991/3991771.png'"
+        alt="cookies-img" />
+      <p class="pacifico-regular">{{ popupMessage }}</p>
+      <button class="accept" (click)="onEnter()">
+        <span class="pacifico-regular">{{ giftPopupActive ? 'OK' : 'Take me inside' }}</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- GIF layer outside the home-root so blur doesn't affect spawned gifs -->
+<div id="gifLayer" class="gif-layer" aria-hidden="true"></div>

@@ -1,0 +1,30 @@
+
+body, html {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	background: #010000;
+	color: #fff;
+}
+
+
+
+.gifts{
+	display: flex;
+
+	position: absolute;
+	left: 165px; top: 400px ;	
+	width: 20px;
+	justify-content: space-between;
+	
+}
+
+.cake{
+	position: absolute;
+	width: 95px;
+	left: 160px; top: 300px ;	
+}
+.gift{
+	position: relative;
+	width: 20px;
+}
